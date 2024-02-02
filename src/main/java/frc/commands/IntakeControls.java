@@ -6,14 +6,15 @@ import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class IntakeControls extends CommandBase{
-    private Supplier<Boolean> conveyorButton, elevatorButton, flywheelButton, Reverse;
+    private Supplier<Boolean> conveyorButton, elevatorButton, flywheelButton, Reverse, Eject;
     private Intake Intake;
 
-    public IntakeControls(Supplier<Boolean> conveyorButton, Supplier<Boolean> elevatorButton, Supplier<Boolean> flywheelButton, Supplier<Boolean> Reverse, Intake Intake) {
+    public IntakeControls(Supplier<Boolean> conveyorButton, Supplier<Boolean> elevatorButton, Supplier<Boolean> flywheelButton, Supplier<Boolean> Reverse, Supplier<Boolean> Eject, Intake Intake) {
         this.conveyorButton = conveyorButton;
         this.elevatorButton = elevatorButton;
         this.flywheelButton = flywheelButton;
         this.Reverse = Reverse;
+        this.Eject = Eject;
         this.Intake = Intake;
         addRequirements(Intake);
     }
@@ -31,14 +32,16 @@ public class IntakeControls extends CommandBase{
             Intake.controlsFlywheel(0);
 
         if(conveyorButton.get())
-            Intake.controlsConveyor(1);
+            Intake.controlsConveyor(0.5);
         else if(Reverse.get())
             Intake.controlsConveyor(-1);
         else
             Intake.controlsConveyor(0);
 
         if(elevatorButton.get())
-            Intake.controlsElevator(1);
+            Intake.controlsElevator(-0.5);
+        else if (Eject.get())
+            Intake.controlsElevator(0.5);
         else
             Intake.controlsElevator(0);
     }

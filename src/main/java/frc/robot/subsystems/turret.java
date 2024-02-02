@@ -53,7 +53,7 @@ public class turret extends SubsystemBase {
 
 
     public void runShooter(double shooter) {
-        this.shooter.set(ControlMode.PercentOutput, shooter *-1);
+        this.shooter.set(ControlMode.PercentOutput, shooter * -1);
     }
 
     @Override
