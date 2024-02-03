@@ -8,7 +8,7 @@ import frc.robot.constants;
 public class Intake extends SubsystemBase {
     private TalonSRX elevator = new TalonSRX(constants.intakeElevatorID);
     private TalonSRX flywheel = new TalonSRX(constants.intakeMotorID);
-    private TalonSRX conveyor = new TalonSRX(constants.intakeCoveyorID);
+    private static TalonSRX conveyor = new TalonSRX(constants.intakeCoveyorID);
 
     public void controlsElevator(double elevatorSpeed) {
         elevator.set(ControlMode.PercentOutput, elevatorSpeed);
@@ -18,7 +18,7 @@ public class Intake extends SubsystemBase {
         flywheel.set(ControlMode.PercentOutput, flywheelSpeed);
     }
     
-    public void controlsConveyor(double conveyorSpeed) {
+    public static void controlsConveyor(double conveyorSpeed) {
         conveyor.set(ControlMode.PercentOutput, conveyorSpeed);
     }
 }
